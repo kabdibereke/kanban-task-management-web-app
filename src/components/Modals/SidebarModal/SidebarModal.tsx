@@ -32,10 +32,12 @@ const SidebarModal = ({setIsOpen,isOpen}: ITaskModal) => {
                         <p className={styles.title}>ALL BOARDS ({board.length})</p>
                         <div className={styles.btns}>
                             {board.map((item,index)=> {
-                            
-                            return <BoardButton  key={index} onClick={()=>dispatch(setCurrentBoard(item))} active={currentBoard.id==item.id} >
+                                if(index!==0) {
+                                    return <BoardButton  key={index} onClick={()=>dispatch(setCurrentBoard(item))} active={currentBoard.id==item.id} >
                                         {item.name}
-                                </BoardButton>
+                                    </BoardButton>
+                                }
+                            
                             })}
                         </div>
                         <BoardButton create  onClick={()=>setAddBoardModalOpen(true)}>

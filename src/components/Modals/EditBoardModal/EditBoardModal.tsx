@@ -48,7 +48,7 @@ const EditBoardModal = ({setIsOpen,isOpen}: IAddModalTask) => {
         })
        
       
-    },[currentBoard,board])
+    },[currentBoard])
     
    
 
@@ -119,8 +119,8 @@ const EditBoardModal = ({setIsOpen,isOpen}: IAddModalTask) => {
         console.log(newArr)
         dispatch(setCurrentTasks(newArr))
         try {
-            await update(ref(db, `${boardId}`), {
-                id:boardId,
+            await update(ref(db, `${currentBoard.id}`), {
+                id:currentBoard.id,
                 columns:subtasksInput,
                 name: titleValue,
                 tasks:newArr

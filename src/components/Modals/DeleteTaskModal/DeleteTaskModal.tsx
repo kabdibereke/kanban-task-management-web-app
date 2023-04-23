@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../../UI/Button/Button';
 import styles from './DeleteTaskModal.module.scss'
 import { useSelector } from 'react-redux';
@@ -16,13 +16,28 @@ interface ITaskModal {
 
 const DeleteTaskModal = ({setIsOpen,isOpen,task}: ITaskModal) => {
     const {board,currentBoard}= useSelector((state: RootState) => state.board)
-    const handleSubmit =async()=> {
+    const [allTask, setAllTask] =useState<ITask[]>([])
+    useEffect(()=> {
         let idBoard = 0;
-        let taskId=0
+       
         board.forEach((item,index)=> {
             if(item.id==currentBoard.id) {
                 idBoard=index
-                if(item.tasks) {        
+                if(item.tasks) {  
+                    setAllTask(item.tasks)
+                }
+            }
+        })
+    },[board])
+    const handleSubmit =async()=> {
+        let idBoard = 0;
+        let taskId=0
+       
+        board.forEach((item,index)=> {
+            if(item.id==currentBoard.id) {
+                idBoard=index
+                if(item.tasks) {  
+                    
                     item.tasks.forEach((item,index)=> {
                         if(item.id==task.id) {
                             taskId=index
@@ -31,9 +46,16 @@ const DeleteTaskModal = ({setIsOpen,isOpen,task}: ITaskModal) => {
                 }
             }
         })
-       
+        let newArr:ITask[] = allTask.filter((item,index)=> {
+            if(index!=taskId) {
+                return item
+            }
+        })
+        setAllTask(newArr)
         try {
-            await remove(ref(db, `${idBoard}/tasks/${taskId}`));
+            await update(ref(db, `${currentBoard.id}`),{
+                tasks:newArr
+            } );
             
             idBoard = 0;
             taskId=0
@@ -52,7 +74,7 @@ const DeleteTaskModal = ({setIsOpen,isOpen,task}: ITaskModal) => {
         <div className={styles.modal_content} onClick={(e)=>e.stopPropagation()}>
 
             <div className={styles.name}>Delete this task?</div>
-            <div className={styles.descr}>Are you sure you want to delete the ‘Build settings UI’ task and its subtasks? This action cannot be reversed.</div>
+            <div className={styles.descr}>{`Are you sure you want to delete the ‘${task.title}’ task and its subtasks? This action cannot be reversed.`}</div>
             <div className={styles.btns}>
                 <Button className={styles.btn} appearence='red' onClick={handleSubmit}> 
                     Delete  

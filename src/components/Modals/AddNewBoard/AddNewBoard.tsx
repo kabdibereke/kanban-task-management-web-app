@@ -75,10 +75,10 @@ const AddNewBoard = ({setIsOpen,isOpen}: IAddModalTask) => {
             return  
         }
 
-      
+        let id = new Date().getTime()
         try {
-            await set(ref(db, `${board.length}`), {
-                id:board.length,
+            await set(ref(db, `${id}`), {
+                id:id,
                 name: titleValue,
                 columns:subtasksInput,
                 tasks: [

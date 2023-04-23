@@ -53,7 +53,7 @@ const TaskModal = ({setIsOpen,isOpen,task,setDeleteTaskModalOpen,setEditTaskModa
        
         try {
            
-            await update(ref(db, `${idBoard}/tasks/${taskId}/subtasks/${id}`), {
+            await update(ref(db, `${currentBoard.id}/tasks/${taskId}/subtasks/${id}`), {
                 isCompleted:bool
             });
             
@@ -84,7 +84,7 @@ const TaskModal = ({setIsOpen,isOpen,task,setDeleteTaskModalOpen,setEditTaskModa
         setCurrentColumnName(name)
         try {
             
-            await update(ref(db, `${idBoard}/tasks/${taskId}`), {
+            await update(ref(db, `${currentBoard.id}/tasks/${taskId}`), {
                 status:name
             });
             

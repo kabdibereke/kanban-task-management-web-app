@@ -49,7 +49,7 @@ const AddColumn = ({setIsOpen,isOpen}: IAddModalTask) => {
         })
       
         try {
-            await set(ref(db, `${boardID}/columns/${lastColumnID}`), {
+            await set(ref(db, `${currentBoard.id}/columns/${lastColumnID}`), {
                 id:lastColumnID,
                 name: titleValue,
             });

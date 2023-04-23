@@ -4,7 +4,7 @@ import styles from './Board.module.scss'
 import { RootState } from '../../store/store'
 import AddColumn from '../Modals/AddColumn/AddColumn'
 import { useEffect, useRef, useState } from 'react'
-import { setCurrentTasks } from '../../store/slice/slice'
+import { setCurrentBoard, setCurrentTasks } from '../../store/slice/slice'
 import ScrollButtons from '../../UI/ScrollButtons/ScrollButtons'
 
 
@@ -24,6 +24,10 @@ const Board = () => {
     })
    
   },[board,currentBoard])
+
+  useEffect(()=> {
+    dispatch(setCurrentBoard(board[1]))
+  },[])
   const slide = (shift:number) => {
     //@ts-ignore
     scrl.current.scrollLeft += shift;
@@ -56,8 +60,8 @@ const Board = () => {
   };
   return (
     <>
-    <ScrollButtons side='left' onClick={() => slide(-50)}/>
-    <ScrollButtons side='right'  onClick={() => slide(+50)}/>
+    <ScrollButtons side='left' onClick={() => slide(-150)}/>
+    <ScrollButtons side='right'  onClick={() => slide(+150)}/>
     <div className={openSidebar ?styles.board_active :styles.board} ref={scrl} onScroll={scrollCheck}>
    
 
@@ -67,7 +71,7 @@ const Board = () => {
             if(item.id ==currentBoard.id) {
               if(item.columns) {
                  return   item.columns.map((item,index)=> {
-                  return <Column key={index} nameColumn={item.name}/>
+                  return <Column key={index} nameColumn={item.name} index={index} />
                 })
               }
               
@@ -75,9 +79,9 @@ const Board = () => {
           
         
            })}
-           <div className={styles.new_column} onClick={()=>setAddColumnModalOpen(true)}> 
+           {currentBoard.name && <div className={styles.new_column} onClick={()=>setAddColumnModalOpen(true)}> 
                 <p className={styles.title}>+ New Column</p>
-           </div>
+           </div>}
         </div>
        
     </div>

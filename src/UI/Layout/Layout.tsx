@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { onValue, ref } from 'firebase/database';
 import { db } from '../../../firebase';
 import ClipLoader from "react-spinners/ClipLoader";
+import { object } from 'prop-types';
 
 
 const Layout = () => {
@@ -24,9 +25,8 @@ const Layout = () => {
       onValue(ref(db), (snapshot) => {
         const data = snapshot.val()
         if (data !== null) {
+          dispatch(setBoard(Object.values(data)))
 
-          dispatch(setBoard(data))
-          dispatch(setCurrentBoard(data[0]))
           setLoading(false)
         }
       });

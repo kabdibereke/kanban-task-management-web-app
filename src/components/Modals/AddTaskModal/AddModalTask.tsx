@@ -106,7 +106,7 @@ const AddModalTask = ({setAddTaskModal,addTaskModal}: IAddModalTask) => {
             }
         })
         try {
-            await set(ref(db, `${idBoard}/tasks/${lastTaskID}`), {
+            await set(ref(db, `${currentBoard.id}/tasks/${lastTaskID}`), {
                 description: descrValue,
                 id: new Date().getTime(),
                 status: currentColumnName,

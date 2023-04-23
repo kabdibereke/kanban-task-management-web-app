@@ -28,10 +28,12 @@ const Sidebar = ({className}:ISidebar) => {
               <p className={styles.title}>ALL BOARDS ({board.length})</p>
               <div className={styles.btns}>
                 {board.map((item,index)=> {
+                   if(index!==0) {
+                    return <BoardButton  key={index} onClick={()=>dispatch(setCurrentBoard(item))} active={currentBoard.id==item.id} >
+                    {item.name}
+                  </BoardButton>
+                   } 
                   
-                  return <BoardButton  key={index} onClick={()=>dispatch(setCurrentBoard(item))} active={currentBoard.id==item.id} >
-                            {item.name}
-                      </BoardButton>
                 })}
               </div>
               <BoardButton create  onClick={()=>setAddBoardModalOpen(true)}>

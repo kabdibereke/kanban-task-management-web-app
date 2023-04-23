@@ -6,6 +6,8 @@ import { ref, remove} from 'firebase/database';
 import { db } from '../../../../firebase';
 import Modal from '../../../UI/Modal/Modal';
 import { setCurrentBoard } from '../../../store/slice/slice';
+import { useState } from 'react';
+import { IBoard } from '../../../interface/interface';
 interface IBoardModal {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>; 
     isOpen: boolean; 
@@ -14,27 +16,20 @@ interface IBoardModal {
 
 const DeleteBoardModal = ({setIsOpen,isOpen}: IBoardModal) => {
     const {board,currentBoard}= useSelector((state: RootState) => state.board)
+    const [newBoard,setNewBoard]= useState<IBoard[]>([])
     const dispatch = useDispatch()
     const handleSubmit =async()=> {
-        let idBoard = 0;
-
-        board.forEach((item,index)=> {
-            if(item.id==currentBoard.id) {
-                idBoard=index
-            }
-        })
-       
+        
         try {
-            await remove(ref(db, `${idBoard}`));
+            await remove(ref(db, `${currentBoard.id}`));
             
-            idBoard = 0;
            
             
            
         } catch (error) {
            console.log(error)
         }
-        dispatch(setCurrentBoard(board[0]))
+        dispatch(setCurrentBoard(board[1]))
         setIsOpen(false)
     }
     
@@ -45,7 +40,7 @@ const DeleteBoardModal = ({setIsOpen,isOpen}: IBoardModal) => {
         <div className={styles.modal_content} onClick={(e)=>e.stopPropagation()}>
 
             <div className={styles.name}>Delete this board?</div>
-            <div className={styles.descr}>{`Are you sure you want to delete the ‘${currentBoard}’ board? This action will remove all columns and tasks and cannot be reversed.`}</div>
+            <div className={styles.descr}>{`Are you sure you want to delete the ‘${currentBoard.name}’ board? This action will remove all columns and tasks and cannot be reversed.`}</div>
             <div className={styles.btns}>
                 <Button className={styles.btn} appearence='red' onClick={handleSubmit}> 
                     Delete  

@@ -100,7 +100,7 @@ const EditModalTask = ({setIsOpen,isOpen,task}: IEditModalTask) => {
             }
         })
         try {
-            await set(ref(db, `${idBoard}/tasks/${taskId}`), {
+            await set(ref(db, `${currentBoard.id}/tasks/${taskId}`), {
                 description: descrValue,
                 id: new Date().getTime(),
                 status: currentColumnName,
