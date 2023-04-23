@@ -9,11 +9,11 @@ import { setBoard, setCurrentBoard, setOpenSidebar } from '../../store/slice/sli
 import { useEffect, useState } from 'react';
 import { onValue, ref } from 'firebase/database';
 import { db } from '../../../firebase';
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 const Layout = () => {
-  const {openSidebar,currentBoard}= useSelector((state: RootState) => state.board)
+  const {openSidebar,currentBoard,board}= useSelector((state: RootState) => state.board)
   const dispatch = useDispatch()
   const [loading, setLoading] =useState(false)
   const [error, setError]= useState(false)
@@ -26,7 +26,7 @@ const Layout = () => {
         if (data !== null) {
 
           dispatch(setBoard(data))
-          
+          dispatch(setCurrentBoard(data[0]))
           setLoading(false)
         }
       });
@@ -39,8 +39,14 @@ const Layout = () => {
   return (
    <div className={styles.layout}>
       <Sidebar className={openSidebar? styles.sidebar_active: styles.sidebar}/>
-      <Header /> 
-      <Board />
+      <Header />
+      {loading && <ClipLoader
+      className={styles.loader}
+      color="#635FC7"
+      size={100}
+    />}
+ 
+      {board.length && <Board />}
       {!openSidebar &&  <EyeButton onClick={()=>dispatch(setOpenSidebar(true))}/>}
    </div>
   )

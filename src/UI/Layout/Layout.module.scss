@@ -9,7 +9,9 @@
   .layout {
     position: relative;
     display: flex;
-
+    .loader {
+      margin: 120px auto;
+    }
   }
   
   .sidebar {

@@ -4,7 +4,7 @@ import {ReactComponent as Logo2}from '../../assets/logo2.svg'
 import {ReactComponent as Arrow}from '../../assets/arrow.svg'
 import Button from '../../UI/Button/Button'
 import  dots from '../../assets/dots.png'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
 import { useEffect, useState } from 'react'
 import AddModalTask from '../Modals/AddTaskModal/AddModalTask'
@@ -12,14 +12,16 @@ import DeleteBoardModal from '../Modals/DeleteBoardModal/DeleteBoardModal'
 import EditBoardModal from '../Modals/EditBoardModal/EditBoardModal'
 import Sidebar from '../Sidebar/Sidebar'
 import SidebarModal from '../Modals/SidebarModal/SidebarModal'
+import { setCurrentBoard } from '../../store/slice/slice'
 
 const Header = () => {
-    const {openSidebar,currentBoard}= useSelector((state: RootState) => state.board)
+    const {openSidebar,currentBoard,board}= useSelector((state: RootState) => state.board)
     const [addTaskModal, setAddTaskModal]=useState(false)
     const [openMoreDialog, setOpenMoreDialog] =useState(false)
     const [deleteBoardModalOpen, setDeleteBoardModalOpen]=useState(false)
     const [editBoardModalOpen, setEditBoardModalOpen]=useState(false)
     const [openSidebarModal, setOpenSidebarModal] =useState(false)
+    const dispatch =useDispatch()
     useEffect(()=> {
         document.body.addEventListener('click',()=> {
             setOpenMoreDialog(false)
@@ -39,6 +41,7 @@ const Header = () => {
         setOpenMoreDialog(false)
         setEditBoardModalOpen(true)
     }
+   
   return (
     <>
     <header className={styles.header}>

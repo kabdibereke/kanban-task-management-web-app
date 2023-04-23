@@ -7,7 +7,7 @@ import { ISidebar } from './Sidebar.props'
 import { useDispatch, useSelector} from 'react-redux'
 import { setCurrentBoard, setOpenSidebar } from '../../store/slice/slice'
 import { RootState } from '../../store/store'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AddNewBoard from '../Modals/AddNewBoard/AddNewBoard'
 import ThemeSwitcher from '../../UI/ThemeSwitcher/ThemeSwitcher'
 
@@ -15,7 +15,7 @@ const Sidebar = ({className}:ISidebar) => {
     const [addBoardModalOpen, setAddBoardModalOpen]=useState(false)
     const {board, currentBoard}= useSelector((state: RootState) => state.board)
     const dispatch = useDispatch()
-   
+    
   return (
    <>
     <div className={cn(styles.sidebar, className,)} >

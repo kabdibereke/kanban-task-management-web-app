@@ -59,7 +59,9 @@ const Board = () => {
     <ScrollButtons side='left' onClick={() => slide(-50)}/>
     <ScrollButtons side='right'  onClick={() => slide(+50)}/>
     <div className={openSidebar ?styles.board_active :styles.board} ref={scrl} onScroll={scrollCheck}>
-    
+   
+
+
         <div className={styles.wrapper}>
            {board.map((item)=> {
             if(item.id ==currentBoard.id) {
