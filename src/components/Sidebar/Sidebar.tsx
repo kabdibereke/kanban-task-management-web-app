@@ -39,14 +39,15 @@ const Sidebar = ({className}:ISidebar) => {
               <BoardButton create  onClick={()=>setAddBoardModalOpen(true)}>
                   + Create New Board
               </BoardButton>
+              <div >
+                <ThemeSwitcher/>
+                <BoardButton hide onClick={()=>dispatch(setOpenSidebar(false))} >
+                    Hide Sidebar
+                </BoardButton>
+              </div>
           </div>
 
-          <div className={styles.footer}>
-              <ThemeSwitcher/>
-              <BoardButton hide onClick={()=>dispatch(setOpenSidebar(false))} >
-                  Hide Sidebar
-              </BoardButton>
-          </div>
+         
       </div>
     </div>
     <AddNewBoard  setIsOpen={setAddBoardModalOpen} isOpen={addBoardModalOpen}/>

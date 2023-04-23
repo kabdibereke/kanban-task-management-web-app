@@ -117,7 +117,7 @@ const AddModalTask = ({setAddTaskModal,addTaskModal}: IAddModalTask) => {
             setCurrentColumnName('')
             setTitleValue('')
             setDescrValue('')
-          
+            setAddTaskModal(false)
            
         } catch (error) {
            console.log(error)
