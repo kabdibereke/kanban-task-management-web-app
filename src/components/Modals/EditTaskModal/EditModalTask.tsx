@@ -20,7 +20,7 @@ const EditModalTask = ({setIsOpen,isOpen,task}: IEditModalTask) => {
     const {board,currentBoard}= useSelector((state: RootState) => state.board)
     const [errorSubtaskInput, setErrorSubtaskInput]=useState(false)
     const [errorTitleInput, setErrorTitleInput]=useState(false)
-    const [currentColumnName,setCurrentColumnName] =useState('')
+    const [currentColumnName,setCurrentColumnName] =useState(task.status)
     const [titleValue, setTitleValue] =useState(task.title)
     const [descrValue, setDescrValue] =useState(task.description || '')
      const [subtasksInput, setSubtaskInput] =useState(task.subtasks||[
@@ -142,9 +142,7 @@ const EditModalTask = ({setIsOpen,isOpen,task}: IEditModalTask) => {
                         {board.map(item=> {
                             if(item.name ==currentBoard.name) {
                                 if(item.columns) {
-                                    if(!currentColumnName ) {
-                                        setCurrentColumnName(item.columns[0].name)
-                                    }
+                                    
                                     return item.columns.map((item)=> {
                                         
                                         return <p key={item.id} onClick={()=>setCurrentColumnName(item.name)}>{item.name}</p>

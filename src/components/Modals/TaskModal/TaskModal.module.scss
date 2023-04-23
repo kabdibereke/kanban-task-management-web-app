@@ -128,7 +128,7 @@
 
 @media(max-width:500px) {
     .modal_content {
-        max-width: 100%;
+        width: 320px;;
         padding: 20px 10px;
         .input_wrapper {
             .input {
@@ -144,6 +144,14 @@
 
             }
            
+        }
+        .more {
+            width: 20px;
+            position: absolute;
+            right: 0px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
         }
     }
       
