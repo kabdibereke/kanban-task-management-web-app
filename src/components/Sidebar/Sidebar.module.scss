@@ -1,0 +1,103 @@
+:global {
+    body[data-theme ='light' ] {
+        --background: var(--white);
+        --border: var(--lines-light);
+        --color: var(--black)
+    
+    }
+    body[data-theme ='dark' ] {
+        --background: var(--dark-grey);
+        --border: var(--lines-drak);
+        --color: var(--white)
+    }
+}
+.sidebar {
+    max-width: 300px;
+   
+    height: 100vh;
+    background-color: var(--background);
+    border:1px solid var(--border);
+    .wrapper {
+        .logo {
+            padding-top:34px ;
+            padding-left: 32px;
+            .logoIcon {
+                path {
+                    fill:var(--color)
+                }
+            }
+        }
+        .boards {
+            margin-top: 54px;
+            display: flex;
+            flex-direction: column;
+            .title {
+                padding-left: 32px;
+                margin-bottom: 19px;
+                font-size: 12px;
+                line-height: 15px;
+                letter-spacing: 2.4px;
+                color: var(--medium-grey);
+            }
+            .btns {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        .footer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 150px;
+            gap: 10px;
+        }
+    }
+}
+
+@media(max-width:858px) {
+    .sidebar {
+        max-width: 250px;
+       
+        height: 100vh;
+        background-color: var(--background);
+        border:1px solid var(--border);
+        .wrapper {
+            .logo {
+                padding-top:34px ;
+                padding-left: 32px;
+                .logoIcon {
+                    path {
+                        fill:var(--color)
+                    }
+                }
+            }
+            .boards {
+                margin-top: 54px;
+                display: flex;
+                flex-direction: column;
+                .title {
+                    padding-left: 32px;
+                    margin-bottom: 19px;
+                    font-size: 12px;
+                    line-height: 15px;
+                    letter-spacing: 2.4px;
+                    color: var(--medium-grey);
+                }
+                .btns {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+            .footer {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 150px;
+                gap: 10px;
+            }
+        }
+    }
+ }
+

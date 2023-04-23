@@ -1,0 +1,54 @@
+:global {
+    body[data-theme = 'light' ] {
+        --background: var(--white);
+        --border: var(--lines-light);
+        --color: var(--black)
+    
+    }
+    body[data-theme = 'dark' ] {
+        --background: var(--dark-grey);
+        --border: var(--lines-drak);
+        --color: var(--white)
+    }
+}
+
+.wrapper {
+    background: var(--background);
+    box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.101545);
+    border-radius: 8px;
+    padding: 23px 16px;
+    width: 300px;
+    height: 95px;
+    word-wrap: break-word;
+    margin-bottom: 20px;
+    cursor: pointer;
+    .title {
+        transition: 0.3s;
+        font-size: 15px;
+        line-height: 19px;
+        color: var(--color);
+        margin-bottom: 10px;
+        
+    }
+    .subtitle {
+        font-size: 12px;
+        line-height: 15px;
+        color: var(--medium-grey);
+    }
+    &:hover {
+        .title {
+            transition: 0.3s;
+            color: var(--primary);
+           
+            
+        }
+    }
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}

@@ -1,0 +1,106 @@
+:global {
+    body[data-theme = 'light' ] {
+        --background: var(--white);
+        --border: var(--lines-light);
+        --color: var(--black)
+    
+    }
+    body[data-theme = 'dark' ] {
+        --background: var(--dark-grey);
+        --border: var(--lines-drak);
+        --color: var(--white)
+    }
+}
+
+.modal_content {
+    margin: 0 auto;
+    width: 480px;
+    height: fit-content;
+    background: var(--background);
+    border-radius: 6px;
+    padding: 32px;
+    .name {
+        font-size: 18px;
+        line-height: 23px;
+        color: var(--color);
+        margin-bottom: 24px;
+    }
+    .input_wrapper {
+        position: relative;
+        width: 100%;
+        margin-bottom: 24px;
+        .title {
+            font-size: 12px;
+            line-height: 15px;
+            color: var(--color);
+            margin-top: 24px;
+        }
+        .input {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin-top: 8px;
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            border: 1px solid var(--medium-grey);
+            border-radius: 4px;
+            padding: 8px 16px;
+            color:var(--color);
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 23px;
+            &:focus {
+                outline: none;
+                border: 1px solid var(--primary);
+            }
+        }
+        .input_error {
+            @extend .input;
+            border: 1px solid var(--red);
+            &:focus {
+                outline: none;
+                border: 1px solid var(--red);
+            }
+        }
+        .error_text {
+          
+            top: 25px;
+            position: absolute;
+            right: 5px;
+            z-index: 5454564;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 13px;
+            color:var(--red);
+            margin-top:5px;
+            width: 60px;
+        }
+        .textarea {
+           
+            @extend .input;
+            height: 112px;
+        }
+    }
+}
+
+@media(max-width:500px) {
+    .modal_content {
+        max-width: 100%;
+        padding: 20px 10px;
+        .input_wrapper {
+            .input {
+                padding: 8px 8px;
+               
+                font-size: 13px;
+                
+               
+            }
+            .error_text {
+                text-align: right;
+                font-size: 10px;
+
+            }
+           
+        }
+    }
+      
+}

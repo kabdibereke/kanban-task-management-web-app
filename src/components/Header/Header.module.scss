@@ -1,0 +1,195 @@
+:global {
+    body[data-theme ='light' ] {
+        --background: var(--white);
+        --border: var(--lines-light);
+        --color: var(--black);
+    }
+    body[data-theme ='dark' ] {
+        --background: var(--dark-grey);
+        --border: var(--lines-drak);
+        --color: var(--white)
+    }
+}
+
+
+.header {
+    height: 96px;
+    width: 100%;
+    position:absolute;
+    background-color: var(--background);
+}
+
+
+.wrapper {
+    height: 96px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo_wrapper {
+        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .btn {
+            display: none;
+        }
+        .logo {
+            width: 200px;
+            height: 96px;
+            display: flex;
+            align-items: center;
+            padding-right: 33px;
+            border-right: 1px solid var(--border);
+            margin-right: 32px;
+            cursor: pointer;
+            .logoIcon {
+                path {
+                    fill:var(--color)
+                }
+            }
+        }
+        .logo2 {
+            
+            display: none;
+        }
+        
+        .name_board {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 30px;
+            color: var(--color);
+            transform: translateX(0px);
+            position: relative;
+            transition: 0.6s all;
+
+        }
+        .name_board_active {
+           
+            
+            @extend .name_board;
+            transform: translateX(50px);
+            position: relative;
+            transition: 0.6s all;
+        }
+    }
+    .btns {
+        display: flex;
+        gap: 20px;
+        button {
+            &:nth-child(2) {
+                display: none;
+            }
+        }
+        
+        
+        .more {
+            width: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .more_dialog  {
+
+            right: 40px;
+            top: 90px;
+            width: 194px;
+            height: 94px;
+            position: absolute;
+            background: var(--background);
+            box-shadow: 0px 10px 20px rgba(54, 78, 126, 0.25);
+            border-radius: 8px;
+            padding: 16px;
+            z-index: 54446;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .edit {
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 23px;  
+                color: var(--medium-grey);
+                cursor: pointer;
+              
+            }
+            .delete {
+                @extend .edit;
+                color: var(--red);
+               
+            }
+        }
+    }
+}
+@media(max-width:858px) {
+   .wrapper {
+    .logo_wrapper {
+       
+        .name_board {
+            font-size: 20px;
+            line-height: 26px;
+        }
+        .name_board_active {
+            font-size: 20px;
+            line-height: 26px;
+            
+      
+            transform: translateX(0px);
+        }
+    }
+        .btns {
+            display: flex;
+            gap: 10px;
+            button {
+                &:first-child {
+                    display: none;
+                }
+                &:nth-child(2) {
+                   
+                    display: block;
+                }
+            }
+            
+        
+            
+        }
+   }
+}
+@media(max-width:611px) {
+    .wrapper {
+     .logo_wrapper {
+        .btn {
+            word-break: break-all;
+            width: fit-content;
+            display: flex;
+            font-size: 15px;
+            line-height: 18px;
+            background: transparent;
+            border: none;
+            align-items:center;
+            gap: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--color);
+            margin-right: 5px;
+          
+        }
+        .logo {
+            display: none;
+        }
+        .logo2 {
+            margin-right: 20px;
+            display: block;
+        }
+         .name_board {
+            display: none;
+            
+         }
+         .name_board_active {
+            display: none;
+             
+         }
+     }
+        
+    }
+ }
+ 

@@ -1,0 +1,61 @@
+:global {
+    body[data-theme = 'light' ] {
+        --background: var(--white);
+        --background-main: var(--lines-light);
+        --color: var(--black)
+    
+    }
+    body[data-theme = 'dark' ] {
+        --background: var(--dark-grey);
+        --background-main: var(--very-dark-grey);
+        --color: var(--white)
+    }
+}
+
+.modal_content {
+    position: relative;
+    margin: 0 auto;
+    max-width: 480px;
+    height: fit-content;
+    background: var(--background);
+    border-radius: 6px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    .sidebar {
+        max-width: 300px;
+        border-radius: 10px;
+        height: fit-content;
+        background-color: var(--background);
+       
+        .wrapper {
+           
+            .boards {
+                margin-top: 54px;
+                display: flex;
+                flex-direction: column;
+                .title {
+                    padding: 20px;
+                    margin-bottom: 19px;
+                    font-size: 12px;
+                    line-height: 15px;
+                    letter-spacing: 2.4px;
+                    color: var(--medium-grey);
+                }
+                .btns {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+            .footer {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                gap: 10px;
+            }
+        }
+    }
+}
+

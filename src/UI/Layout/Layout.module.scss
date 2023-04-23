@@ -1,0 +1,36 @@
+
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  
+  .layout {
+    position: relative;
+    display: flex;
+
+  }
+  
+  .sidebar {
+    position: fixed;
+    left: -300px;
+    transition: 0.6s all;
+   
+  }
+  
+  .sidebar_active {
+    position: fixed;
+    left: 0;
+    transition: 0.6s all;
+    z-index: 1;
+  }
+
+  @media(max-width:611px) {
+    .sidebar {
+       display: none;
+    }
+    .sidebar_active {
+      display: none;
+    }
+ }

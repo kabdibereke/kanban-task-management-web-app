@@ -1,0 +1,46 @@
+.btnR {
+    z-index:1;
+    top: 105px;
+    right: 20px;
+    position: absolute;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary);
+    cursor: pointer;
+    border-radius: 100%;
+    transition: 0.3s;
+    transform: rotate(-90deg);
+    margin-left: 20px;
+    path {
+        stroke: var(--white);
+    }
+    &:hover {
+        transition: 0.3s;
+        background-color: var(--primary-hover);
+    }
+
+}
+
+.btnL {
+    z-index:1;
+    top: 105px;
+    right: 80px;
+    position: absolute;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary);
+    cursor: pointer;
+    border-radius: 100%;
+    transition: 0.3s;
+    transform: rotate(90deg);
+    path {
+        stroke: var(--white);
+    }
+    &:hover {
+        transition: 0.3s;
+        background-color: var(--primary-hover);
+    }
+
+}

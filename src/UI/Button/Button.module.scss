@@ -1,0 +1,80 @@
+:global {
+    body[data-theme = 'light' ] {
+        --background: var(--lines-light);
+        --background-main: var(--lines-light);
+        --color: var(--black)
+    
+    }
+    body[data-theme = 'dark' ] {
+        --background: var(--lines-light);
+        --background-main: var(--very-dark-grey);
+        --color: var(--white)
+    }
+}
+
+
+.button {
+    background: var(--primary);
+    border-radius: 24px;
+    transition: 0.3s;
+    padding: 15px 25px;
+    border:none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19px;
+    color: var(--white);
+    &:hover {
+        transition: 0.3s;
+        background: var(--primary-hover);
+    }
+}
+.white {
+    background: var(--border);
+    color: var(--primary);
+    &:hover {
+        background: var(--border);
+    }
+}
+
+.red {
+    background: var(--red);
+    color: var(--color);
+    &:hover {
+        background: var(--red-hover)
+    }
+}
+
+@media(max-width:611px) {
+    .button {
+        background: var(--primary);
+        border-radius: 24px;
+        transition: 0.3s;
+        padding: 10px 15px;
+        border:none;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 19px;
+        color: var(--white);
+        &:hover {
+            transition: 0.3s;
+            background: var(--primary-hover);
+        }
+    }
+    .white {
+        background: var(--border);
+        color: var(--primary);
+        &:hover {
+            background: var(--border);
+        }
+    }
+    
+    .red {
+        background: var(--red);
+        color: var(--color);
+        &:hover {
+            background: var(--red-hover)
+        }
+    }
+}

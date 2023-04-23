@@ -1,0 +1,24 @@
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 24px;
+    margin-top: 40px;
+    .title {
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: 2.4px;
+        color: var(--medium-grey);
+        text-transform: uppercase;
+        margin-bottom: 24px;
+    }
+}
+@media(max-width:611px) {
+    .wrapper {
+        margin-left: 10px;
+        margin-top: 40px;
+        
+    }
+      
+}
