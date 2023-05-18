@@ -3,11 +3,12 @@ import Button from '../../../UI/Button/Button';
 import Input from '../../../UI/Input/Input';
 import styles from './AddColumn.module.scss'
 import Dropdown from '../../../UI/Dropdown/Dropdown';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
 import { ref, set } from 'firebase/database';
 import { db } from '../../../../firebase';
 import Modal from '../../../UI/Modal/Modal';
+import { setCurrentBoard } from '../../../store/slice/slice';
 
 interface IAddModalTask {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>; 
@@ -18,7 +19,7 @@ const AddColumn = ({setIsOpen,isOpen}: IAddModalTask) => {
     const {board,currentBoard}= useSelector((state: RootState) => state.board)
     const [errorTitleInput, setErrorTitleInput]=useState(false)
     const [titleValue, setTitleValue] =useState('')
-
+    const dispatch =useDispatch()
     const handleChangeInputValue =(e: React.ChangeEvent<HTMLInputElement>)=> {
        
         setErrorTitleInput(false)
@@ -53,11 +54,13 @@ const AddColumn = ({setIsOpen,isOpen}: IAddModalTask) => {
                 id:lastColumnID,
                 name: titleValue,
             });
-           
-            setIsOpen(false)
+            dispatch(setCurrentBoard(board[boardID]))
             boardID = 0
-             lastColumnID= 0
+            lastColumnID= 0
+            setIsOpen(false)
+
            
+             
         } catch (error) {
            console.log(error)
         }

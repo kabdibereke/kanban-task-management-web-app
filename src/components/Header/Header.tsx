@@ -13,6 +13,7 @@ import EditBoardModal from '../Modals/EditBoardModal/EditBoardModal'
 import Sidebar from '../Sidebar/Sidebar'
 import SidebarModal from '../Modals/SidebarModal/SidebarModal'
 import { setCurrentBoard } from '../../store/slice/slice'
+import { db } from '../../../firebase'
 
 const Header = () => {
     const {openSidebar,currentBoard,board}= useSelector((state: RootState) => state.board)
@@ -21,6 +22,7 @@ const Header = () => {
     const [deleteBoardModalOpen, setDeleteBoardModalOpen]=useState(false)
     const [editBoardModalOpen, setEditBoardModalOpen]=useState(false)
     const [openSidebarModal, setOpenSidebarModal] =useState(false)
+
     const dispatch =useDispatch()
     useEffect(()=> {
         document.body.addEventListener('click',()=> {
@@ -32,6 +34,8 @@ const Header = () => {
         })
        )
     },[])
+
+
 
     const openDeleteModal =()=> {
         setOpenMoreDialog(false)
@@ -54,13 +58,22 @@ const Header = () => {
                     <div className={styles.logo2} >
                         <Logo2 className={styles.logoIcon}/>
                     </div>
-                    <h1 className={ openSidebar? styles.name_board_active: styles.name_board}>
-                    {currentBoard.name}
-                    </h1>
-                    <button className={styles.btn} onClick={()=>setOpenSidebarModal(true)}>
-                        {currentBoard.name}
-                        <Arrow/>
-                    </button>
+                    {board.map(item=> {
+                        if(item.id==currentBoard.id) {
+                            return <h1 key={item.id} className={ openSidebar? styles.name_board_active: styles.name_board}>
+                            {item.name}
+                            </h1>
+                        }
+                    })}
+                    {board.map(item=> {
+                        if(item.id==currentBoard.id) {
+                            return  <button className={styles.btn} onClick={()=>setOpenSidebarModal(true)}>
+                                {item.name}
+                                <Arrow/>
+                                </button>
+                        }
+                    })}
+                   
                 </div>
                 <div className={styles.btns} onClick={(e)=>e.stopPropagation()} >
                     <Button onClick={()=>setAddTaskModal(true)} className={styles.desktop}>

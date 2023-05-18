@@ -29,7 +29,7 @@ const SidebarModal = ({setIsOpen,isOpen}: ITaskModal) => {
             <div className={styles.sidebar} >
                 <div className={styles.wrapper}>
                     <div className={styles.boards}>
-                        <p className={styles.title}>ALL BOARDS ({board.length-1})</p>
+                    <p className={styles.title}>ALL BOARDS ({board.length-1==-1? 0:board.length-1 })</p>
                         <div className={styles.btns}>
                             {board.map((item,index)=> {
                                 if(index!==0) {

@@ -38,6 +38,7 @@ const EditBoardModal = ({setIsOpen,isOpen}: IAddModalTask) => {
     useEffect(()=> {
         board.forEach((item,index)=> {
             if(item.id ==currentBoard.id) {
+                dispatch(setCurrentBoard(board[index]))
                 setTitleValue(item.name)
                 if(item.columns) {
                     setSubtaskInput(item.columns)
@@ -48,7 +49,7 @@ const EditBoardModal = ({setIsOpen,isOpen}: IAddModalTask) => {
         })
        
       
-    },[currentBoard])
+    },[board,currentBoard])
     
    
 
@@ -118,6 +119,7 @@ const EditBoardModal = ({setIsOpen,isOpen}: IAddModalTask) => {
         })
         console.log(newArr)
         dispatch(setCurrentTasks(newArr))
+       
         try {
             await update(ref(db, `${currentBoard.id}`), {
                 id:currentBoard.id,
@@ -127,13 +129,14 @@ const EditBoardModal = ({setIsOpen,isOpen}: IAddModalTask) => {
             });
            
             dispatch(setCurrentBoard(board[boardId]))
-           
+            boardId=0
+            setIsOpen(false)
         } catch (error) {
            console.log(error)
         }
      
         
-        boardId=0
+        
     }
   return (
     <Modal setOpen={setIsOpen} open={isOpen}>
